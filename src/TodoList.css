@@ -1,0 +1,493 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root {
+  --pastel-pink: #FFD6E0;
+  --blush-pink: #FFB7C5;
+  --rose-gold: #E0BFB8;
+  --lavender: #E6C7E6;
+  --pale-pink: #FFF4F6;
+  --white: #FFFFFF;
+  --soft-shadow: 0 4px 30px rgba(255, 182, 193, 0.3);
+  --glow: 0 0 15px rgba(255, 182, 193, 0.7);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, var(--pastel-pink), var(--lavender));
+  min-height: 100vh;
+  color: #5A3E4D;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background elements */
+.background-glitter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.5)"/><circle cx="30" cy="70" r="1.5" fill="rgba(255,255,255,0.6)"/><circle cx="70" cy="20" r="1" fill="rgba(255,255,255,0.5)"/><circle cx="80" cy="80" r="1.5" fill="rgba(255,255,255,0.6)"/></svg>');
+  background-size: 200px 200px;
+  opacity: 0.5;
+  animation: glitter 10s linear infinite;
+  z-index: -1;
+}
+
+.background-stickers {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sticker {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.3;
+  animation: float 8s infinite ease-in-out;
+}
+
+.sticker.cherry {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.sticker.star {
+  top: 70%;
+  left: 85%;
+  animation-delay: 1s;
+}
+
+.sticker.bow {
+  top: 85%;
+  left: 15%;
+  animation-delay: 2s;
+}
+
+/* Main container */
+.app {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 25px;
+  box-shadow: var(--soft-shadow);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(to right, var(--blush-pink), var(--rose-gold));
+  color: var(--white);
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.header h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  opacity: 0.9;
+}
+
+/* Content layout */
+.content {
+  display: flex;
+  flex-direction: row;
+  padding: 1.5rem;
+  gap: 2rem;
+}
+
+.calendar-section {
+  flex: 1;
+  min-width: 350px;
+}
+
+.tasks-section {
+  flex: 2;
+}
+
+/* Calendar styling */
+.cute-calendar {
+  width: 100%;
+  border: none;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cute-calendar .react-calendar__navigation button {
+  color: var(--blush-pink);
+  font-size: 1rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  min-width: 44px;
+}
+
+.cute-calendar .react-calendar__tile {
+  padding: 0.5em;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.cute-calendar .react-calendar__tile--now {
+  background: var(--lavender);
+  color: white;
+}
+
+.cute-calendar .react-calendar__tile--active {
+  background: var(--blush-pink);
+  color: white;
+}
+
+.cute-calendar .react-calendar__tile--hasTasks {
+  position: relative;
+}
+
+.cute-calendar .react-calendar__tile--hasTasks::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: var(--blush-pink);
+  border-radius: 50%;
+}
+
+/* Task form */
+.task-form {
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.task-input, .date-input {
+  color: black;
+  flex: 1;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.task-input {
+  color: rgb(241, 161, 241); /* Change this to your desired color */
+}
+
+.task-input:focus, .date-input:focus {
+  color: rgb(241, 161, 241);
+  outline: none;
+  background: rgba(24, 23, 23, 0.95);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), 0 0 0 2px var(--blush-pink);
+}
+
+.add-button {
+  background: linear-gradient(to right, var(--blush-pink), var(--lavender));
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(216, 167, 177, 0.3);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  gap: 0.5rem;
+}
+
+.add-button:hover {
+  box-shadow: 0 6px 20px rgba(216, 167, 177, 0.4), var(--glow);
+}
+
+.button-icon {
+  font-size: 1.2rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Task list */
+.task-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.task-list-header h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: var(--blush-pink);
+}
+
+.clear-button {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--blush-pink);
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.clear-button:not(:disabled):hover {
+  background: var(--blush-pink);
+  color: white;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--rose-gold);
+  opacity: 0.7;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+}
+
+.task-list {
+  list-style: none;
+  max-height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--blush-pink) transparent;
+}
+
+.task-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background-color: var(--blush-pink);
+  border-radius: 20px;
+}
+
+/* Task items */
+.task-item {
+  background: rgba(238, 83, 135, 0.8);
+  border-radius: 15px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.completed {
+  opacity: 0.7;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  width: 22px;
+  height: 22px;
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--blush-pink);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.checkbox-container:hover .checkmark {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.checkbox-input:checked ~ .checkmark {
+  background-color: var(--blush-pink);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.checkbox-input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.task-details {
+  flex: 1;
+}
+
+.task-title {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: #A78A94;
+}
+
+.task-date {
+  font-size: 0.8rem;
+  color: #A78A94;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: #D8A7B1;
+  font-size: 1.2rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+  color: #C97E8A;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Animations */
+@keyframes glitter {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 200px; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .content {
+    flex-direction: column;
+  }
+  
+  .calendar-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 1rem;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+  }
+  
+  .task-input, .date-input, .add-button {
+    width: 100%;
+  }
+}
